@@ -24,5 +24,6 @@ jobs:
         working-directory: go-test
       - name: Run go
         run: |
+          ls -la
           chmod +x gotest
           ./gotest
