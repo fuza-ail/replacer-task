@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -31,7 +30,7 @@ func loadYAMLFiles(directory string) ([]string, error) {
 func readYAMLContents(files []string) (map[string]interface{}, error) {
 	yamlContents := make(map[string]interface{})
 	for _, file := range files {
-		content, err := ioutil.ReadFile(file)
+		content, err := os.ReadFile(file)
 		if err != nil {
 			return nil, err
 		}
