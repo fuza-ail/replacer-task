@@ -23,4 +23,6 @@ jobs:
         run: go build
         working-directory: go-test
       - name: Run go
-        run: ./gotest
+        run: |
+          chmod +x gotest
+          ./gotest
