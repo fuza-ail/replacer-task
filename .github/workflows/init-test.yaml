@@ -27,3 +27,4 @@ jobs:
           ls -la
           chmod +x gotest
           ./gotest
+        working-directory: go-test
