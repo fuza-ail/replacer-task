@@ -71,7 +71,7 @@ func replaceKeyValue(file string, contents interface{}, key string, value interf
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(file, updatedYAML, 0644)
+	err = os.WriteFile(file, updatedYAML, 0644)
 	return err
 }
 
