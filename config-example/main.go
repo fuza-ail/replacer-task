@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+)
 
 func main () {
-	fmt.Println("test")
+	key := flag.String("key", "", "key argument")
+	value := flag.String("value", "", "value argument")
+	fmt.Println(key, value)
 }
