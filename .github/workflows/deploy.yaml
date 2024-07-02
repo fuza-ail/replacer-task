@@ -43,7 +43,7 @@ jobs:
           commit-message: "Edit Configuration"
           title: "Deploy Configuration Changes"
           body: |
-            This pull request was automatically`.
+            This pull request was automatically
 
             Checkout the branch `${{ github.actor }}/deploy-${{ github.event.inputs.environment }}` to see the changes.
           branch: "${{ github.actor }}/generate-${{ github.event.inputs.environment }}"
