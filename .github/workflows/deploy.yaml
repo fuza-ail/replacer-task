@@ -20,7 +20,7 @@ on:
         default: "staging"
 
 jobs:
-  deploy:
+  create-pr:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -51,3 +51,26 @@ jobs:
           labels: "automated"
           assignees: ${{ github.actor }}
           draft: false
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: create-pr
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create SSH directory
+        run: mkdir -p ~/.ssh
+
+      - name: Add SSH Host Key
+        run: ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          HOST: ${{ secrets.EC2_HOST }}
+          USERNAME: ${{ secrets.EC2_USER }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > key.pem
+          chmod 600 key.pem
+          scp -o StrictHostKeyChecking=no -i key.pem -r ./config-example $USERNAME@$HOST:~/
