@@ -34,7 +34,7 @@ jobs:
 
       - name: Run Replacer
         working-directory: config-example
-        run: go run main.go -key currency -value EUR
+        run: go run main.go -key currency -value AUD
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
